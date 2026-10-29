@@ -11,7 +11,7 @@
 Повторный запуск с тем же --id и --lang заменяет картинку (не дублирует).
 Требуется: pip install pillow
 """
-import argparse, json, os, sys, urllib.request
+import argparse, json, os, subprocess, sys
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,8 +34,13 @@ def main():
     os.makedirs(os.path.dirname(png), exist_ok=True)
     os.makedirs(os.path.dirname(jpg), exist_ok=True)
 
-    with urllib.request.urlopen(a.url, timeout=120) as r, open(png, 'wb') as f:
-        f.write(r.read())
+    # curl, а не urllib: urllib через прокси облачной сессии отдавал пустой файл
+    tmp = png + '.part'
+    subprocess.run(['curl', '-fsSL', '--retry', '3', '--max-time', '180', '-o', tmp, a.url], check=True)
+    if os.path.getsize(tmp) == 0:
+        os.remove(tmp)
+        sys.exit('Скачан пустой файл — ссылка export.url, скорее всего, истекла')
+    os.replace(tmp, png)
     im = Image.open(png)
     w, h = im.size
     t = im.convert('RGB')

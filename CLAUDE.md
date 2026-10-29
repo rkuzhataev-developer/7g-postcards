@@ -57,6 +57,8 @@
    - закоммить и запушь в `main`: `git add -A && git commit -m "Add postcards YYYY-MM-DD" && git push`;
    - подожди 1–2 минуты и проверь, что `https://rkuzhataev-developer.github.io/7g-postcards/data.json` отдаёт новую запись
      (и что PNG по адресу `.../cards/<id>-<lang>.png` открывается). Если сайт не обновился за ~5 минут — уведомление Родиону, в Teams не писать.
+     Если сеть сессии вообще не пускает на `rkuzhataev-developer.github.io` (прокси отвечает 403 на CONNECT) — это не ошибка публикации:
+     после успешного push подожди 2 минуты и продолжай, а в итоге ответа отметь, что сайт проверить не удалось.
 5. Отправь **одно** сообщение ответом в ветку Teams — `teams_reply_channel_message`:
    - teamId = `78c11fcd-c386-4387-820b-a236c72f333e`
    - channelId = `19:06a2e47bfadc4bb0957bccfc7dda501c@thread.tacv2`
