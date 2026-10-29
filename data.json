@@ -151,31 +151,5 @@
     "bytes": 5292930
    }
   ]
- },
- {
-  "id": "tr-2026-10-29",
-  "date": "2026-10-29",
-  "holiday": "Republic Day",
-  "country": "🇹🇷 Turkey",
-  "images": [
-   {
-    "lang": "RU",
-    "src": "cards/tr-2026-10-29-ru.png",
-    "thumb": "thumbs/tr-2026-10-29-ru.jpg",
-    "file": "7G Turkey Republic Day RU.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 5149556
-   },
-   {
-    "lang": "EN",
-    "src": "cards/tr-2026-10-29-en.png",
-    "thumb": "thumbs/tr-2026-10-29-en.jpg",
-    "file": "7G Turkey Republic Day EN.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 5194475
-   }
-  ]
  }
 ]
