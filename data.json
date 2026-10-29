@@ -1,181 +1,155 @@
 [
- {
-  "id": "uz-2026-09-26",
-  "date": "2026-09-26",
-  "holiday": "State Security Service Day",
-  "country": "🇺🇿 Uzbekistan",
-  "images": [
-   {
-    "lang": "RU",
-    "src": "cards/uz-2026-09-26-ru.png",
-    "thumb": "thumbs/uz-2026-09-26-ru.jpg",
-    "file": "7G Uzbekistan State Security Service Day RU.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 5219557
-   }
-  ]
- },
- {
-  "id": "tm-2026-09-27",
-  "date": "2026-09-27",
-  "holiday": "Independence Day",
-  "country": "🇹🇲 Turkmenistan",
-  "images": [
-   {
-    "lang": "RU",
-    "src": "cards/tm-2026-09-27-ru.png",
-    "thumb": "thumbs/tm-2026-09-27-ru.jpg",
-    "file": "7G Turkmenistan Independence Day RU.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 3881668
-   }
-  ]
- },
- {
-  "id": "tm-2026-09-30",
-  "date": "2026-09-30",
-  "holiday": "National Security Officers' Day",
-  "country": "🇹🇲 Turkmenistan",
-  "images": [
-   {
-    "lang": "RU",
-    "src": "cards/tm-2026-09-30-ru.png",
-    "thumb": "thumbs/tm-2026-09-30-ru.jpg",
-    "file": "7G Turkmenistan National Security Officers Day RU.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 4422934
-   }
-  ]
- },
- {
-  "id": "kr-2026-10-03",
-  "date": "2026-10-03",
-  "holiday": "National Foundation Day",
-  "country": "🇰🇷 South Korea",
-  "images": [
-   {
-    "lang": "EN",
-    "src": "cards/kr-2026-10-03-en.png",
-    "thumb": "thumbs/kr-2026-10-03-en.jpg",
-    "file": "7G South Korea National Foundation Day EN.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 3996801
-   }
-  ]
- },
- {
-  "id": "iq-2026-10-03",
-  "date": "2026-10-03",
-  "holiday": "National Day (Independence)",
-  "country": "🇮🇶 Iraq",
-  "images": [
-   {
-    "lang": "EN",
-    "src": "cards/iq-2026-10-03-en.png",
-    "thumb": "thumbs/iq-2026-10-03-en.jpg",
-    "file": "7G Iraq National Day EN.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 4034871
-   }
-  ]
- },
- {
-  "id": "id-2026-10-05",
-  "date": "2026-10-05",
-  "holiday": "Armed Forces Day (Hari TNI)",
-  "country": "🇮🇩 Indonesia",
-  "images": [
-   {
-    "lang": "EN",
-    "src": "cards/id-2026-10-05-en.png",
-    "thumb": "thumbs/id-2026-10-05-en.jpg",
-    "file": "7G Indonesia Armed Forces Day EN.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 4560838
-   }
-  ]
- },
- {
-  "id": "az-2026-10-18",
-  "date": "2026-10-18",
-  "holiday": "Independence Day",
-  "country": "🇦🇿 Azerbaijan",
-  "images": [
-   {
-    "lang": "RU",
-    "src": "cards/az-2026-10-18-ru.png",
-    "thumb": "thumbs/az-2026-10-18-ru.jpg",
-    "file": "7G Azerbaijan Independence Day RU.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 4223524
-   }
-  ]
- },
- {
-  "id": "kr-2026-10-21",
-  "date": "2026-10-21",
-  "holiday": "Police Day",
-  "country": "🇰🇷 South Korea",
-  "images": [
-   {
-    "lang": "EN",
-    "src": "cards/kr-2026-10-21-en.png",
-    "thumb": "thumbs/kr-2026-10-21-en.jpg",
-    "file": "7G South Korea Police Day EN.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 4899262
-   }
-  ]
- },
- {
-  "id": "uz-2026-10-25",
-  "date": "2026-10-25",
-  "holiday": "Internal Affairs Officers' Day",
-  "country": "🇺🇿 Uzbekistan",
-  "images": [
-   {
-    "lang": "RU",
-    "src": "cards/uz-2026-10-25-ru.png",
-    "thumb": "thumbs/uz-2026-10-25-ru.jpg",
-    "file": "7G Uzbekistan Internal Affairs Officers Day RU.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 5292930
-   }
-  ]
- },
- {
-  "id": "tr-2026-10-29",
-  "date": "2026-10-29",
-  "holiday": "Republic Day",
-  "country": "🇹🇷 Turkey",
-  "images": [
-   {
-    "lang": "RU",
-    "src": "cards/tr-2026-10-29-ru.png",
-    "thumb": "thumbs/tr-2026-10-29-ru.jpg",
-    "file": "7G Turkey Republic Day RU.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 5149556
-   },
-   {
-    "lang": "EN",
-    "src": "cards/tr-2026-10-29-en.png",
-    "thumb": "thumbs/tr-2026-10-29-en.jpg",
-    "file": "7G Turkey Republic Day EN.png",
-    "w": 2160,
-    "h": 2160,
-    "bytes": 5194475
-   }
-  ]
- }
+  {
+    "id": "uz-2026-09-26",
+    "date": "2026-09-26",
+    "holiday": "State Security Service Day",
+    "country": "🇺🇿 Uzbekistan",
+    "images": [
+      {
+        "lang": "RU",
+        "src": "cards/uz-2026-09-26-ru.png",
+        "thumb": "thumbs/uz-2026-09-26-ru.jpg",
+        "file": "7G Uzbekistan State Security Service Day RU.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 5219557
+      }
+    ]
+  },
+  {
+    "id": "tm-2026-09-27",
+    "date": "2026-09-27",
+    "holiday": "Independence Day",
+    "country": "🇹🇲 Turkmenistan",
+    "images": [
+      {
+        "lang": "RU",
+        "src": "cards/tm-2026-09-27-ru.png",
+        "thumb": "thumbs/tm-2026-09-27-ru.jpg",
+        "file": "7G Turkmenistan Independence Day RU.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 3881668
+      }
+    ]
+  },
+  {
+    "id": "tm-2026-09-30",
+    "date": "2026-09-30",
+    "holiday": "National Security Officers' Day",
+    "country": "🇹🇲 Turkmenistan",
+    "images": [
+      {
+        "lang": "RU",
+        "src": "cards/tm-2026-09-30-ru.png",
+        "thumb": "thumbs/tm-2026-09-30-ru.jpg",
+        "file": "7G Turkmenistan National Security Officers Day RU.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 4422934
+      }
+    ]
+  },
+  {
+    "id": "kr-2026-10-03",
+    "date": "2026-10-03",
+    "holiday": "National Foundation Day",
+    "country": "🇰🇷 South Korea",
+    "images": [
+      {
+        "lang": "EN",
+        "src": "cards/kr-2026-10-03-en.png",
+        "thumb": "thumbs/kr-2026-10-03-en.jpg",
+        "file": "7G South Korea National Foundation Day EN.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 3996801
+      }
+    ]
+  },
+  {
+    "id": "iq-2026-10-03",
+    "date": "2026-10-03",
+    "holiday": "National Day (Independence)",
+    "country": "🇮🇶 Iraq",
+    "images": [
+      {
+        "lang": "EN",
+        "src": "cards/iq-2026-10-03-en.png",
+        "thumb": "thumbs/iq-2026-10-03-en.jpg",
+        "file": "7G Iraq National Day EN.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 4034871
+      }
+    ]
+  },
+  {
+    "id": "id-2026-10-05",
+    "date": "2026-10-05",
+    "holiday": "Armed Forces Day (Hari TNI)",
+    "country": "🇮🇩 Indonesia",
+    "images": [
+      {
+        "lang": "EN",
+        "src": "cards/id-2026-10-05-en.png",
+        "thumb": "thumbs/id-2026-10-05-en.jpg",
+        "file": "7G Indonesia Armed Forces Day EN.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 4560838
+      }
+    ]
+  },
+  {
+    "id": "az-2026-10-18",
+    "date": "2026-10-18",
+    "holiday": "Independence Day",
+    "country": "🇦🇿 Azerbaijan",
+    "images": [
+      {
+        "lang": "RU",
+        "src": "cards/az-2026-10-18-ru.png",
+        "thumb": "thumbs/az-2026-10-18-ru.jpg",
+        "file": "7G Azerbaijan Independence Day RU.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 4223524
+      }
+    ]
+  },
+  {
+    "id": "kr-2026-10-21",
+    "date": "2026-10-21",
+    "holiday": "Police Day",
+    "country": "🇰🇷 South Korea",
+    "images": [
+      {
+        "lang": "EN",
+        "src": "cards/kr-2026-10-21-en.png",
+        "thumb": "thumbs/kr-2026-10-21-en.jpg",
+        "file": "7G South Korea Police Day EN.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 4899262
+      }
+    ]
+  },
+  {
+    "id": "uz-2026-10-25",
+    "date": "2026-10-25",
+    "holiday": "Internal Affairs Officers' Day",
+    "country": "🇺🇿 Uzbekistan",
+    "images": [
+      {
+        "lang": "RU",
+        "src": "cards/uz-2026-10-25-ru.png",
+        "thumb": "thumbs/uz-2026-10-25-ru.jpg",
+        "file": "7G Uzbekistan Internal Affairs Officers Day RU.png",
+        "w": 2160,
+        "h": 2160,
+        "bytes": 5292930
+      }
+    ]
+  }
 ]
