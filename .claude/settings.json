@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Microsoft_365__read_resource",
+      "mcp__Microsoft_365__teams_list_channel_messages",
+      "mcp__Microsoft_365__teams_reply_channel_message",
+      "mcp__Microsoft_365__outlook_send_mail",
+      "mcp__Figma__create_session",
+      "mcp__Figma__get_metadata",
+      "mcp__Figma__get_screenshot",
+      "mcp__Figma__download_assets",
+      "PushNotification",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(python3 scripts/add_card.py:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
