@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>7Generation Postcards</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Golos+Text:wght@400;500;600&display=swap">
+<style>
+/* Layout: sticky header with date nav + date strip; selected day as compact rows (thumb + download); archive grid with search; full-size preview in a lightbox */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f2f4f8; --surface:#ffffff; --fg:#0f1f33; --muted:#5a6980; --line:#dbe2ec;
+  --accent:#0d3a6b; --accent-fg:#ffffff; --hl:#e6edf7; --hot:#c8102e; --scrim:rgba(8,16,28,.86);
+  --display:"Unbounded","Golos Text",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0a121e; --surface:#111c2c; --fg:#e6ecf5; --muted:#91a0b6; --line:#213049;
+  --accent:#6aa5ea; --accent-fg:#06121f; --hl:#16263d; --hot:#ff5a6e; --scrim:rgba(2,6,12,.9); color-scheme:dark}}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+[hidden]{display:none!important}
+body.locked{overflow:hidden}
+.gutter{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Header */
+.top{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:12px}
+.brand{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+.brand span{color:var(--muted);font-weight:500}
+.nav{display:flex;align-items:center;gap:6px}
+.btn{font:inherit;font-weight:600;font-size:14px;border-radius:9px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;display:inline-block;line-height:1.5}
+.btn:hover:not([disabled]){border-color:var(--accent)}
+.btn[disabled]{opacity:.4;cursor:default}
+.btn.icon{padding:8px 12px}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* Date strip */
+.strip{display:flex;gap:8px;overflow-x:auto;padding-block:2px 12px;scrollbar-width:thin;scroll-snap-type:x proximity}
+.month{flex:none;align-self:center;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 4px 0 8px}
+.chip{flex:none;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;min-width:58px;padding:6px 8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;font:inherit}
+.chip .d{font-family:var(--display);font-weight:500;font-size:17px;line-height:1.2;font-variant-numeric:tabular-nums}
+.chip .w{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.chip .f{font-size:13px;line-height:1.3;white-space:nowrap}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-current="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.chip[aria-current="true"] .w{color:inherit;opacity:.8}
+.chip.today:not([aria-current="true"]){border-color:var(--hot)}
+
+/* Selected day */
+main{display:flex;flex-direction:column;gap:40px;padding-block:28px 56px}
+.day{display:flex;flex-direction:column;gap:16px}
+.day-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.day-head h1{font-family:var(--display);font-weight:600;font-size:clamp(22px,4.2vw,30px);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.badge{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--hl);color:var(--accent)}
+.badge.hot{background:var(--hot);color:#fff}
+.notice{margin:0;color:var(--muted)}
+.holiday{display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.holiday h2{font-family:var(--display);font-weight:500;font-size:19px;margin:0;text-wrap:balance}
+.holiday .country{color:var(--muted);margin-top:-10px}
+.cards{display:flex;flex-wrap:wrap;gap:16px}
+.card{display:flex;align-items:center;gap:16px;flex:1 1 380px;min-width:0;padding:12px;border-radius:12px;background:var(--bg)}
+.thumb{flex:none;position:relative;width:160px;max-width:40%;aspect-ratio:1/1;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--hl);cursor:zoom-in}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.thumb .zoom{position:absolute;right:6px;bottom:6px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
+.thumb:hover{border-color:var(--accent)}
+.card-body{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.lang{font-family:var(--display);font-weight:500;font-size:16px}
+.meta{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* Archive */
+.archive{display:flex;flex-direction:column;gap:16px}
+.archive-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.archive-head h2{font-family:var(--display);font-weight:500;font-size:19px;margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters input,.filters select{font:inherit;font-size:14px;padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0}
+.filters input{width:220px;max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.tile{display:flex;flex-direction:column;gap:6px;text-align:left;padding:0;border:0;background:none;color:var(--fg);cursor:pointer;font:inherit;min-width:0}
+.frame{position:relative;width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:var(--hl);border:1px solid var(--line)}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.tile:hover .frame{border-color:var(--accent)}
+.tile.sel .frame{outline:3px solid var(--accent);outline-offset:-3px}
+.tile .t1{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tile .t2{font-size:14px;font-weight:500;line-height:1.3}
+.tile .count{position:absolute;right:6px;bottom:6px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
+.empty{color:var(--muted);padding:24px;border:1px dashed var(--line);border-radius:14px;text-align:center}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:20;background:var(--scrim);display:flex;flex-direction:column;
+  padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));gap:12px}
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#fff}
+.lb-title{font-weight:500;min-width:0}
+.lb-title small{display:block;color:rgba(255,255,255,.7);font-size:13px;font-variant-numeric:tabular-nums}
+.lb-actions{display:flex;gap:8px;align-items:center}
+.lb .btn{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)}
+.lb .btn.primary{background:#fff;color:#0d3a6b;border-color:#fff}
+.lb-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+
+@media (max-width:520px){.brand span{display:none}.btn{padding:8px 11px}.thumb{width:120px}.card{flex-basis:100%}}
+@media (prefers-reduced-motion:no-preference){.lb{animation:fade .15s ease-out}@keyframes fade{from{opacity:0}to{opacity:1}}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="gutter">
+    <div class="bar">
+      <div class="brand">7Generation <span>· postcards</span></div>
+      <nav class="nav" aria-label="Dates">
+        <button class="btn icon" id="prev" type="button" aria-label="Previous date">←</button>
+        <button class="btn" id="today" type="button">Today</button>
+        <button class="btn icon" id="next" type="button" aria-label="Next date">→</button>
+      </nav>
+    </div>
+    <div class="strip" id="strip" role="tablist" aria-label="All dates"></div>
+  </div>
+</header>
+
+<main class="gutter">
+  <section class="day" id="day" aria-live="polite"><div class="empty">Loading postcards…</div></section>
+  <section class="archive">
+    <div class="archive-head">
+      <h2>All postcards</h2>
+      <div class="filters">
+        <input id="q" type="search" placeholder="Country or holiday" aria-label="Search">
+        <select id="country" aria-label="Country"><option value="">All countries</option></select>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lb-title">
+  <div class="lb-bar">
+    <div class="lb-title" id="lb-title"></div>
+    <div class="lb-actions">
+      <a class="btn primary" id="lb-dl" href="#" download>Download PNG</a>
+      <button class="btn" id="lb-close" type="button" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""></div>
+</div>
+
+<script>
+(function(){
+  var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var WD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var WS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var LANG={RU:'Russian',EN:'English'};
+  function parts(s){var p=s.split('-');return {y:+p[0],m:+p[1]-1,d:+p[2],wd:new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay()}}
+  function md(s){var p=parts(s);return MN[p.m]+' '+p.d}
+  function mb(n){return (n/1048576).toFixed(1)+' MB'}
+  function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
+  function flag(c){var m=c.match(/^(\S+)\s/);return m?m[1]:''}
+  function bare(c){return c.replace(/^\S+\s/,'')}
+  function todayISO(){
+    try{return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Almaty',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+    catch(e){return new Date().toISOString().slice(0,10)}
+  }
+  var TODAY=todayISO();
+  var strip=document.getElementById('strip'),dayEl=document.getElementById('day'),grid=document.getElementById('grid');
+  var prevB=document.getElementById('prev'),nextB=document.getElementById('next'),todayB=document.getElementById('today');
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbTitle=document.getElementById('lb-title'),
+      lbDl=document.getElementById('lb-dl'),lbClose=document.getElementById('lb-close'),lbStage=document.getElementById('lb-stage');
+  var data=[],byDate={},dates=[],byId={},current=null,lbItem=null,lbReturn=null;
+
+  function dlLink(img,cls){var a=el('a',cls,'Download PNG');a.href=img.src;a.setAttribute('download',img.file);return a}
+
+  function openLb(entry,img,from){
+    lbItem=img;lbReturn=from||null;
+    lbTitle.textContent='';
+    lbTitle.appendChild(document.createTextNode(entry.holiday+' · '+entry.country));
+    lbTitle.appendChild(el('small',null,(LANG[img.lang]||img.lang)+' · '+img.w+'×'+img.h+' · PNG · '+mb(img.bytes)));
+    lbImg.alt=entry.holiday+' — '+entry.country+', '+img.lang;
+    lbImg.src=img.thumb;
+    var full=new Image();full.onload=function(){if(lbItem===img)lbImg.src=full.src};full.src=img.src;
+    lbDl.href=img.src;lbDl.setAttribute('download',img.file);
+    lb.hidden=false;document.body.classList.add('locked');lbClose.focus();
+  }
+  function closeLb(){lb.hidden=true;document.body.classList.remove('locked');lbItem=null;if(lbReturn)lbReturn.focus()}
+  lbClose.addEventListener('click',closeLb);
+  lbStage.addEventListener('click',function(ev){if(ev.target===lbStage)closeLb()});
+
+  function startDate(){
+    if(byDate[TODAY])return TODAY;
+    var past=dates.filter(function(d){return d<=TODAY});
+    return past.length?past[past.length-1]:dates[dates.length-1];
+  }
+  function fromHash(){
+    var h=(location.hash||'').slice(1);
+    if(!h)return null;
+    if(byDate[h])return h;
+    if(byId[h])return byId[h].date;
+    var m=h.match(/(\d{4}-\d{2}-\d{2})/);if(m&&byDate[m[1]])return m[1];
+    return null;
+  }
+  function go(d){if(location.hash.slice(1)===d){render(d)}else{location.hash=d}}
+
+  function card(entry,img){
+    var c=el('div','card');
+    var t=el('button','thumb');t.type='button';t.setAttribute('aria-label','Open full size: '+entry.holiday+', '+img.lang);
+    var im=el('img');im.src=img.thumb;im.alt='';t.appendChild(im);
+    t.appendChild(el('span','zoom','View'));
+    t.addEventListener('click',function(){openLb(entry,img,t)});
+    c.appendChild(t);
+    var body=el('div','card-body');
+    body.appendChild(el('span','lang',LANG[img.lang]||img.lang));
+    body.appendChild(el('span','meta',img.w+'×'+img.h+' · PNG · '+mb(img.bytes)));
+    body.appendChild(dlLink(img,'btn primary'));
+    c.appendChild(body);
+    return c;
+  }
+
+  function render(d){
+    current=d;
+    dayEl.textContent='';
+    if(!d){dayEl.appendChild(el('div','empty','Postcards will appear here as soon as the first one is ready.'));return}
+    var p=parts(d);
+    var head=el('div','day-head');
+    head.appendChild(el('h1',null,WD[p.wd]+', '+md(d)));
+    if(d===TODAY)head.appendChild(el('span','badge hot','Today'));
+    else if(d>TODAY)head.appendChild(el('span','badge','Upcoming'));
+    dayEl.appendChild(head);
+    if(!location.hash&&d!==TODAY)dayEl.appendChild(el('p','notice','No postcards today. Showing the most recent date.'));
+    byDate[d].forEach(function(e){
+      var h=el('article','holiday');h.id=e.id;
+      h.appendChild(el('h2',null,e.holiday));
+      h.appendChild(el('div','country',e.country));
+      var cs=el('div','cards');e.images.forEach(function(img){cs.appendChild(card(e,img))});
+      h.appendChild(cs);dayEl.appendChild(h);
+    });
+    var i=dates.indexOf(d);
+    prevB.disabled=i<=0;nextB.disabled=i<0||i>=dates.length-1;
+    Array.prototype.forEach.call(strip.querySelectorAll('.chip'),function(c){c.setAttribute('aria-current',c.dataset.date===d?'true':'false')});
+    var ch=document.getElementById('chip-'+d);
+    if(ch){strip.scrollLeft=ch.offsetLeft-strip.clientWidth/2+ch.offsetWidth/2}
+    Array.prototype.forEach.call(grid.querySelectorAll('.tile'),function(t){t.classList.toggle('sel',t.dataset.date===d)});
+  }
+
+  var sel=document.getElementById('country'),q=document.getElementById('q');
+  function renderGrid(){
+    grid.textContent='';
+    var s=(q.value||'').trim().toLowerCase(),cf=sel.value;
+    var list=data.slice().sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0}).filter(function(e){
+      if(cf&&e.country!==cf)return false;
+      if(s&&(e.holiday+' '+e.country).toLowerCase().indexOf(s)<0)return false;return true});
+    if(!list.length){grid.appendChild(el('div','empty','Nothing found. Try another country or word.'));return}
+    list.forEach(function(e){
+      var t=el('button','tile');t.type='button';t.dataset.date=e.date;
+      var fr=el('div','frame');var im=el('img');im.loading='lazy';im.src=e.images[0].thumb;im.alt='';fr.appendChild(im);
+      if(e.images.length>1)fr.appendChild(el('span','count',e.images.map(function(i){return i.lang}).join(' + ')));
+      t.appendChild(fr);
+      t.appendChild(el('span','t1',md(e.date)+', '+parts(e.date).y));
+      t.appendChild(el('span','t2',e.country+' · '+e.holiday));
+      if(e.date===current)t.classList.add('sel');
+      t.addEventListener('click',function(){go(e.date);window.scrollTo({top:0,behavior:'smooth'})});
+      grid.appendChild(t);
+    });
+  }
+  q.addEventListener('input',renderGrid);sel.addEventListener('change',renderGrid);
+
+  prevB.addEventListener('click',function(){var i=dates.indexOf(current);if(i>0)go(dates[i-1])});
+  nextB.addEventListener('click',function(){var i=dates.indexOf(current);if(i<dates.length-1)go(dates[i+1])});
+  todayB.addEventListener('click',function(){var d=startDate();if(location.hash){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}render(d)});
+  document.addEventListener('keydown',function(ev){
+    if(!lb.hidden){if(ev.key==='Escape')closeLb();return}
+    if(ev.target&&/INPUT|SELECT|TEXTAREA/.test(ev.target.tagName))return;
+    if(ev.key==='ArrowLeft')prevB.click();else if(ev.key==='ArrowRight')nextB.click();
+  });
+  window.addEventListener('hashchange',function(){if(!lb.hidden)closeLb();if(dates.length)render(fromHash()||startDate())});
+
+  function init(list){
+    data=list||[];byDate={};byId={};
+    data.forEach(function(e){(byDate[e.date]=byDate[e.date]||[]).push(e);byId[e.id]=e});
+    dates=Object.keys(byDate).sort();
+    strip.textContent='';
+    var lastMonth=-1;
+    dates.forEach(function(d){
+      var p=parts(d);
+      if(p.m!==lastMonth){strip.appendChild(el('span','month',MN[p.m].slice(0,3)));lastMonth=p.m}
+      var c=el('button','chip');c.type='button';c.setAttribute('role','tab');c.dataset.date=d;c.id='chip-'+d;
+      if(d===TODAY)c.classList.add('today');
+      c.appendChild(el('span','w',WS[p.wd]));
+      c.appendChild(el('span','d',String(p.d)));
+      c.appendChild(el('span','f',byDate[d].map(function(e){return flag(e.country)}).join(' ')));
+      c.title=byDate[d].map(function(e){return e.holiday+' — '+e.country}).join('\n');
+      c.addEventListener('click',function(){go(d)});
+      strip.appendChild(c);
+    });
+    var countries={};data.forEach(function(e){countries[e.country]=1});
+    Object.keys(countries).sort(function(a,b){return bare(a).localeCompare(bare(b),'en')}).forEach(function(c){var o=el('option',null,c);o.value=c;sel.appendChild(o)});
+    renderGrid();
+    render(dates.length?(fromHash()||startDate()):null);
+  }
+  fetch('data.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+    .then(init)
+    .catch(function(){dayEl.textContent='';dayEl.appendChild(el('div','empty','Could not load postcards. Reload the page.'))});
+})();
+</script>
+</body>
+</html>
