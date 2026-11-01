@@ -177,5 +177,22 @@
     "bytes": 5194475
    }
   ]
+ },
+ {
+  "id": "kg-2026-11-01",
+  "date": "2026-11-01",
+  "holiday": "Police Day",
+  "country": "🇰🇬 Kyrgyzstan",
+  "images": [
+   {
+    "lang": "RU",
+    "src": "cards/kg-2026-11-01-ru.png",
+    "thumb": "thumbs/kg-2026-11-01-ru.jpg",
+    "file": "7G Kyrgyzstan Police Day RU.png",
+    "w": 2160,
+    "h": 2160,
+    "bytes": 5226340
+   }
+  ]
  }
 ]
