@@ -194,5 +194,22 @@
     "bytes": 5226340
    }
   ]
+ },
+ {
+  "id": "tj-2026-11-06",
+  "date": "2026-11-06",
+  "holiday": "Constitution Day",
+  "country": "🇹🇯 Tajikistan",
+  "images": [
+   {
+    "lang": "RU",
+    "src": "cards/tj-2026-11-06-ru.png",
+    "thumb": "thumbs/tj-2026-11-06-ru.jpg",
+    "file": "7G Tajikistan Constitution Day RU.png",
+    "w": 2160,
+    "h": 2160,
+    "bytes": 5223185
+   }
+  ]
  }
 ]
