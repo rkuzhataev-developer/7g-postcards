@@ -211,5 +211,22 @@
     "bytes": 5223185
    }
   ]
+ },
+ {
+  "id": "tj-2026-11-10",
+  "date": "2026-11-10",
+  "holiday": "Police Day",
+  "country": "🇹🇯 Tajikistan",
+  "images": [
+   {
+    "lang": "RU",
+    "src": "cards/tj-2026-11-10-ru.png",
+    "thumb": "thumbs/tj-2026-11-10-ru.jpg",
+    "file": "7G Tajikistan Police Day RU.png",
+    "w": 2160,
+    "h": 2160,
+    "bytes": 4674493
+   }
+  ]
  }
 ]
