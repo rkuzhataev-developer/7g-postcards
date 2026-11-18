@@ -228,5 +228,22 @@
     "bytes": 4674493
    }
   ]
+ },
+ {
+  "id": "ma-2026-11-18",
+  "date": "2026-11-18",
+  "holiday": "Independence Day",
+  "country": "🇲🇦 Morocco",
+  "images": [
+   {
+    "lang": "EN",
+    "src": "cards/ma-2026-11-18-en.png",
+    "thumb": "thumbs/ma-2026-11-18-en.jpg",
+    "file": "7G Morocco Independence Day EN.png",
+    "w": 2160,
+    "h": 2160,
+    "bytes": 4849695
+   }
+  ]
  }
 ]
