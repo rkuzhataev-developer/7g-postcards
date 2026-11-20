@@ -245,5 +245,22 @@
     "bytes": 4849695
    }
   ]
+ },
+ {
+  "id": "om-2026-11-20",
+  "date": "2026-11-20",
+  "holiday": "National Day",
+  "country": "🇴🇲 Oman",
+  "images": [
+   {
+    "lang": "EN",
+    "src": "cards/om-2026-11-20-en.png",
+    "thumb": "thumbs/om-2026-11-20-en.jpg",
+    "file": "7G Oman National Day EN.png",
+    "w": 2160,
+    "h": 2160,
+    "bytes": 5102572
+   }
+  ]
  }
 ]
